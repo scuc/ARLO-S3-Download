@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+arlo = "==1.2.59"
+PyYAML = "==6.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

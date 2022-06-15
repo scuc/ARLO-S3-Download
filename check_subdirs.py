@@ -33,7 +33,7 @@ def check_subdirs(root_dir, deviceName, videofilename):
         file_path = Path(month_path, mp4)
 
         chk_path_msg = "Checking file path for MP4: ".format(file_path)
-        logger.info(chk_path_msg)
+        logger.debug(chk_path_msg)
 
         if not year_path.exists():
             year_path.mkdir()
@@ -69,6 +69,6 @@ def check_subdirs(root_dir, deviceName, videofilename):
 
     # logger.info(year_msg)
     # logger.info(month_msg)
-    logger.info(file_msg)
+    logger.debug(file_msg)
 
     return file_path

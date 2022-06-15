@@ -31,9 +31,9 @@ def download_mp4s():
 
         # Get all of the recordings for a date range.
         library = arlo.GetLibrary(start_date, today)
-        print("GOT LIBRARY")
+        logger.info("Connected to the Arlo Library")
         devices = arlo.GetDevices()
-        print("GOT DEVICES")
+        print(devices)
 
         device_list = []
 
@@ -43,7 +43,10 @@ def download_mp4s():
             device_dict = {device["deviceId"]: device["deviceName"]}
             device_list.append(device_dict)
 
+        logger.info(f"Devices found in library: {device_list}")
+
         # Iterate through the recordings in the library.
+        download_count = 0
         for recording in library:
 
             deviceId = recording["deviceId"]
@@ -76,21 +79,23 @@ def download_mp4s():
                     f.close()
                     download_msg = 'Downloaded '+ videofilename+' from '+ recording['createdDate']+'.'
                     dowload_path_msg = "Download path: " + str(mp4_path)
+                    download_count += 1
                     logger.info(download_msg)
                     logger.info(dowload_path_msg)
             else:
                 # Get video as a chunked stream; this function returns a generator.
                 skip_msg = "Skipping: " + str(videofilename)
-                logger.info(skip_msg)
+                logger.debug(skip_msg)
                 continue
 
         # Delete all of the videos you just downloaded from the Arlo library.
         # Notice that you can pass the "library" object we got back from the GetLibrary() call.
         # result = arlo.BatchDeleteRecordings(library)
 
-        # If we made it here without an exception, then the videos were successfully deleted.
-        # print('Batch deletion of videos completed successfully.')
-        print("Completed.")
+        if download_count != 0: 
+            logger.info(f"Total videos downloaded: {download_count}")
+        else: 
+            logger.info(f"No new videos for download.")
         return
 
     except Exception as e:

@@ -34,12 +34,12 @@ handlers:
 
 loggers:
     main:
-        level: DEBUG
+        level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
 
 root:
-    level: NOTSET
+    level: INFO
     handlers: [console, info_file_handler, error_file_handler]
     propogate: yes
 
