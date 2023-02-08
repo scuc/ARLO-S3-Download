@@ -6,7 +6,7 @@ brotli==1.0.9
 ca_certs_locater==1.0
 click==8.0.4
 configparser==5.2.0
-cryptography==36.0.1
+cryptography==39.0.1
 Cython==0.29.28
 dl==0.1.0
 docutils==0.18.1
