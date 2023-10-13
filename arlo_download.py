@@ -10,6 +10,7 @@ config = config.get_config()
 
 USERNAME = config['creds']['username']
 PASSWORD = config['creds']['password']
+MFA = config['creds']['mfa']
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +24,7 @@ def download_mp4s():
     # Instantiating the Arlo object automatically calls Login(), which returns an oAuth token that gets cached.
     # Subsequent successful calls to login will update the oAuth token.
     try: 
-        arlo = Arlo(USERNAME, PASSWORD)
+        arlo = Arlo(USERNAME, PASSWORD, "gmail.credentials")
         logger.info("Sucessfully logged into Arlo account")
 
         today = (date.today()-timedelta(days=0)).strftime("%Y%m%d")
@@ -33,7 +34,7 @@ def download_mp4s():
         library = arlo.GetLibrary(start_date, today)
         logger.info("Connected to the Arlo Library")
         devices = arlo.GetDevices()
-        print(devices)
+        # print(devices)
 
         device_list = []
 

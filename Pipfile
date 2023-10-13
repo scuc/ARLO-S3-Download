@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-arlo = "==1.2.59"
 PyYAML = "==6.0"
+arlo = "*"
+curl-cffi = "==0.5.7"
 
 [dev-packages]
 

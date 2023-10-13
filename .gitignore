@@ -116,3 +116,4 @@ _logs/*
 config.yaml
 *.plist
 library.json
+.DS_Store
